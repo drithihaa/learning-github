@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Say hello
+        run: echo "Hello from the runner!"
+
+      - name: Run a check
+        run: |
+          echo "Running checks..."
+          test -f README.md && echo "README.md found" || (echo "README.md missing!" && exit 1)
